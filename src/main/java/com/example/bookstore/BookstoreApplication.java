@@ -20,6 +20,7 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
+
 			// Luodaan muutamia kategorioita ja tallennetaan ne tietokantaan
 			Category comic = new Category("Comic");
 			Category fantasy = new Category("Fantasy");
