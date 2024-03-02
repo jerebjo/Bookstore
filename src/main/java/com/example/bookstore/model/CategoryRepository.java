@@ -1,8 +1,9 @@
-
 package com.example.bookstore.model;
 
 import org.springframework.data.repository.CrudRepository;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
-    // You can add custom query methods here if needed
+
+    @Override
+    Iterable<Category> findAll();
 }
