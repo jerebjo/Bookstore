@@ -23,13 +23,12 @@ public class BookController {
     private BookRepository repository;
 
     @Autowired
-    private CategoryRepository CategoryRepository;
+    private CategoryRepository categoryRepository;
 
     @RequestMapping("/booklist")
     public String booklist(Model model) {
         model.addAttribute("books", repository.findAll());
         return "booklist";
-
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
@@ -41,7 +40,7 @@ public class BookController {
     @RequestMapping(value = "/add")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
-        model.addAttribute("categories", CategoryRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addbook";
     }
 
@@ -53,12 +52,11 @@ public class BookController {
 
     @ModelAttribute("categories")
     public Iterable<Category> categories() {
-        return CategoryRepository.findAll();
+        return categoryRepository.findAll();
     }
 
     @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
         return repository.findById(bookId);
     }
-
 }
